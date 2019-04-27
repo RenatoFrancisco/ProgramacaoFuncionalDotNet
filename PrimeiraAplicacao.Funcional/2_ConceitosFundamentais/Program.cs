@@ -15,13 +15,24 @@ namespace _2_ConceitosFundamentais
                 DateTime.Parse("01/09/2016"),
             };
 
-            foreach (var data in datasParaTeste)
-            {
-                var resultado = periodo.VerificarSeDataEstaEntreOPeriodo(data);
-                Console.WriteLine($@"A data {data:dd/MM/yyyy} está entre {periodo.DataInicial:dd/MM/yyyy} e {periodo.DataFinal:dd/MM/yyyy}? {(resultado ? "Sim" : "Não")}.");
-            }
+            ImprimirResultado(datasParaTeste, periodo);
+
+            Console.WriteLine("Após Alteração:");
+
+            PeriodoDeTempoImutavel.AdicionarDias(periodo, 30);
+
+            ImprimirResultado(datasParaTeste, periodo);
 
             Console.ReadKey();
+        }
+
+        static void ImprimirResultado(DateTime[] datas, PeriodoDeTempoImutavel periodo)
+        {
+            foreach (var data in datas)
+            {
+                var resultado = PeriodoDeTempoImutavel.VerificarSeDataEstaEntreOPeriodo(periodo, data);
+                Console.WriteLine($@"A data {data:dd/MM/yyyy} está entre {periodo.DataInicial:dd/MM/yyyy} e {periodo.DataFinal:dd/MM/yyyy}? {(resultado ? "Sim" : "Não")}.");
+            }
         }
     }
 }

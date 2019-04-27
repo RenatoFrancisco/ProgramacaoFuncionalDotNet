@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrimeiraAplicacaoOO", "Prim
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2_ConceitosFundamentais", "2_ConceitosFundamentais\2_ConceitosFundamentais.csproj", "{E34231E4-F0E2-4873-B715-F4301A3544CD}"
 EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "2_ConceitosFundamentais.Funcional", "2_ConceitosFundamentais.Funcional\2_ConceitosFundamentais.Funcional.fsproj", "{29111829-7DBC-4358-BFB6-C42374FA725A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E34231E4-F0E2-4873-B715-F4301A3544CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34231E4-F0E2-4873-B715-F4301A3544CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34231E4-F0E2-4873-B715-F4301A3544CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29111829-7DBC-4358-BFB6-C42374FA725A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29111829-7DBC-4358-BFB6-C42374FA725A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29111829-7DBC-4358-BFB6-C42374FA725A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29111829-7DBC-4358-BFB6-C42374FA725A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

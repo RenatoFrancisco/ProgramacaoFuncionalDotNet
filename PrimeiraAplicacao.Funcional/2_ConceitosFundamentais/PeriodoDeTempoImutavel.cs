@@ -22,5 +22,26 @@ namespace _2_ConceitosFundamentais
 
         public static PeriodoDeTempoImutavel AdicionarDias(PeriodoDeTempoImutavel periodo, int dias) =>
             new PeriodoDeTempoImutavel(periodo.DataInicial.AddDays(dias), periodo.DataFinal.AddDays(dias));
+
+        void ExemploUsoDeDeclaracao(int numero)
+        {
+            int resultado = 0;
+            bool numeroPar = numero % 2 == 0;
+
+            if (numeroPar)
+                resultado = 2;
+
+            Console.WriteLine(resultado);
+            Console.ReadKey();
+        }
+
+        void ExemploUsoDeExpressao(int numero)
+        {
+            bool numeroPar = numero % 2 == 0;
+            int resultado = numeroPar ? 2 : 0;
+
+            Console.WriteLine(resultado);
+            Console.ReadKey();
+        }
     }
 }

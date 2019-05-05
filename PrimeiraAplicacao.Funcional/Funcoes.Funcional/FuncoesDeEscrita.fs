@@ -2,7 +2,7 @@
 
 [<RequireQualifiedAccess>]
 module FuncoesDeEscrita =
-    let escrever nome = printfn "Seu nome é: %s" nome
+    let escrever nome =z printfn "Seu nome é: %s" nome
 
 
 module FuncoesDeEscritaDeNumero =

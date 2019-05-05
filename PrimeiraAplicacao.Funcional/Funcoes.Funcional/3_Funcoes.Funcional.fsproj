@@ -6,6 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="FuncaoAltaOrdem.fs" />
+    <Compile Include="VerificadorNumeroPar.fs" />
+    <Compile Include="FuncoesDeEscrita.fs" />
     <Compile Include="FuncoesAninhadas.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>

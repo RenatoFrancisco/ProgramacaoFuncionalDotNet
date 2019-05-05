@@ -8,10 +8,7 @@ namespace Funcoes
     {
         static void Main(string[] args)
         {
-            var funcoes = new FuncoesAninhadas();
-            funcoes.EscreveSeNumeroEParOuImpar(12);
-            funcoes.EscreveSeNumeroEParOuImpar(17);
-
+            MultiplicarEImpimirNumeroTest();
             Console.ReadKey();
         }
 
@@ -23,6 +20,18 @@ namespace Funcoes
             Func<int, bool> metodoParaFiltrarViaLambda = numero => numero % 2 == 0;
 
             numeroPares.Where(VerificadorNumeroPar.NumeroEPar);
+        }
+
+        static void MultiplicarEImpimirNumeroTest()
+        {
+            Action<int> multiplicaPor5EDepoisImprimir = FuncaoAltaOrdem.MultiplicarEImprimirNumero(5);
+            Action<int> multiplicaPor3EDepoisImprimir = FuncaoAltaOrdem.MultiplicarEImprimirNumero(3);
+
+            int numeroQueSeraMultiplicado = 10;
+
+            multiplicaPor5EDepoisImprimir(numeroQueSeraMultiplicado);
+            multiplicaPor3EDepoisImprimir(numeroQueSeraMultiplicado);
+
         }
 
     }

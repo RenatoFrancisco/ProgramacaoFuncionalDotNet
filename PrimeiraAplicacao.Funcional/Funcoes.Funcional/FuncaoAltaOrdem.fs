@@ -12,6 +12,13 @@ let imprimirDobroDosNumeros numeros =  executarAcaoSobreElementos numeros (fun n
 let multiplicarEImprimirNumero multiplicador numero = printfn "%i." (numero * multiplicador)
 
 let imprimirListaDeNumeros multiplicador numeros =
-    executarAcaoSobreElementos numeros (fun numero -> multiplicarEImprimirNumero multiplicador numero)
+    executarAcaoSobreElementos numeros
+        (multiplicarEImprimirNumero multiplicador)
+
+let multiplicarEImprimirNumeroCurrying multiplicador = 
+    let imprimirNumero numero =
+        printfn "%i." (numero * multiplicador)
+    
+    imprimirNumero
 
 

@@ -21,5 +21,18 @@ namespace Funcoes
         {
             ExecutarAcaoSobreElementos(numeros, numero => Console.WriteLine(numero * 2));
         }
+
+        public static Action<int> MultiplicarEImprimirNumero(int multiplicador)
+        {
+            return (numero) => Console.WriteLine(numero * multiplicador);
+        }
+
+        public static void ImprimirNumeros(List<int> numeros, int multiplicador)
+        {
+            Action<int> multiplicaEDepoisImprimi =
+                MultiplicarEImprimirNumero(multiplicador);
+
+            ExecutarAcaoSobreElementos(numeros, multiplicaEDepoisImprimi);
+        }
     }
 }

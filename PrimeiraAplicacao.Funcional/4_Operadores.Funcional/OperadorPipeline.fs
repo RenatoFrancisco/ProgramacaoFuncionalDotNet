@@ -22,3 +22,5 @@ let retorno1 = variasOperacoes 2 3
 
 let exemploInverso valor1 valor2 =
     somarCom10 <| valor1 + valor2
+
+let retorno2 = exemploInverso 2 3

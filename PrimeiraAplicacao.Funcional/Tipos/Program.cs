@@ -18,5 +18,12 @@ namespace Tipos
 
             return acumulador;
         }
+
+        private static int FatorialRecursivo(int numero)
+        {
+            return numero == 0 || numero == 1 ? 1
+                : numero == 2 ? 2
+                : numero * FatorialRecursivo(numero - 1);
+        }
     }
 }

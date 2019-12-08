@@ -16,4 +16,4 @@ type WeatherForecastController (logger : ILogger<WeatherForecastController>) =
     [<HttpGet>]
     member __.Get() =
         let contexto = Persistencia.obterContexto()
-        contexto.Inteiros.Dados
+        contexto.Clientes.Dados

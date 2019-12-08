@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Include="Configuracoes.fs" />
+    <Compile Include="Dominio.fs" />
     <Compile Include="Operadores.fs" />
     <Compile Include="Wrappers.fs" />
     <Compile Include="Persistencia.fs" />

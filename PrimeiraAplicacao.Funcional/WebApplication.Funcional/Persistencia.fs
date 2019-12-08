@@ -1,6 +1,7 @@
 ﻿module Persistencia
     
     open Configuracoes
+    open Dominio
     open Operadores
     open Wrappers
 
@@ -10,8 +11,9 @@
     }
 
     type Contexto = {
-        Inteiros: Tabela<int>
-        Textos: Tabela<string>
+        Clientes: Tabela<Cliente>
+        Produtos: Tabela<Produto>
+        Compras: Tabela<Compra>
     }
     
     let salvarTabela tabela =
@@ -43,26 +45,47 @@
         | true -> carregarTabela<'e> arquivoCompleto
         | false -> inicializarTabela arquivoCompleto dadosIniciais
 
-    let inteirosIniciais =
+    let clientesIniciais =
         [
-            for valor in 1..100 do
-                if valor % 2 = 0 then
-                    yield valor
-                    yield valor * valor * valor
+            {
+                Id = 1
+                Idade = 23
+                Nome = "Joãozinho"
+                Sobrenome = "Silva"
+                CPF = "021.231.231-21"
+                Email ="joaozinha@teste.com"
+                Telefone = "99887766"
+                Endereco = "Rua do Joãozinho"
+            };
+            {
+                Id = 2
+                Idade = 21
+                Nome = "Mariazinha"
+                Sobrenome ="Souza"
+                CPF = "123.321.123-21"
+                Email = "mariazinha@teste.com"
+                Telefone = "99881122"
+                Endereco = "Rua da Mariazinha"
+            }
         ]
 
     let obterContexto() = 
         let diretorioBase = Configuracoes.diretorioTabelas
         {
-            Inteiros = criarTabelaParaAplicacao
+            Clientes = criarTabelaParaAplicacao
                             diretorioBase
-                            "/Inteiros.json"
-                            inteirosIniciais
+                            "/Clientes.json"
+                            clientesIniciais
 
-            Textos = criarTabelaParaAplicacao
+            Produtos = criarTabelaParaAplicacao
                             diretorioBase
-                            "/Textos.json"
-                            ["teste"; "texto"]
+                            "/Produtos.json"
+                            []
+
+            Compras = criarTabelaParaAplicacao
+                            diretorioBase
+                            "/Compras.json"
+                            []
         }
 
     

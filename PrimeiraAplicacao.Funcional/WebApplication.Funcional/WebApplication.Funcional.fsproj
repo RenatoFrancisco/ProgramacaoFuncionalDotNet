@@ -10,7 +10,9 @@
     <Compile Include="Operadores.fs" />
     <Compile Include="Wrappers.fs" />
     <Compile Include="Persistencia.fs" />
+    <Compile Include="Servicos.fs" />
     <Compile Include="WeatherForecast.fs" />
+    <Compile Include="Controllers\ClienteController.fs" />
     <Compile Include="Controllers/WeatherForecastController.fs" />
     <Compile Include="Startup.fs" />
     <Compile Include="Program.fs" />

@@ -4,7 +4,7 @@ open Servicos
 open Microsoft.AspNetCore.Mvc
 
 [<ApiController>]
-[<Route("api/[controller]/[action]")>]
+[<Route("api/[controller]/[action]/{id?}")>]
 type ClienteController() =
     inherit ControllerBase()
 
@@ -15,5 +15,13 @@ type ClienteController() =
     [<HttpPost>]
     member __.Incluir(cliente) = 
         ClienteServico.incluirCliente cliente
+
+    [<HttpDelete>]
+    member __.Excluir(id) =
+        Servicos.ClienteServico.excluirCliente id
+
+    [<HttpPut>]
+    member __.Atualizar(cliente) =
+        ClienteServico.atualizarCliente cliente
 
 

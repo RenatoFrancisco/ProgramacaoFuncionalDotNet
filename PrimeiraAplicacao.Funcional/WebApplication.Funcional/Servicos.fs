@@ -7,19 +7,32 @@ module ClienteServico =
     let obterClientes() =
         obterContexto().Clientes
         
-    let incluirCliente cliente =
+    let atualizarTabelasClientes funcaoParaObterNovosDados =
         let tabela = obterClientes()
-        let dados = cliente :: tabela.Dados
-        salvarTabela { tabela with Dados = dados }
+        let dados = funcaoParaObterNovosDados tabela
+        salvarTabela { tabela with Dados = dados}
+ 
+    let incluirCliente cliente =
+        atualizarTabelasClientes (fun tabela -> cliente :: tabela.Dados)
+
+    let rec excluirClienteComId id jaPercorridos (lista: Cliente list) =
+        match lista with
+            | head :: tail when head.Id = id -> jaPercorridos @ tail
+            | head :: tail -> excluirClienteComId id (head :: jaPercorridos) tail
+            | [] -> jaPercorridos
 
     let excluirCliente id =
-        let tabela = obterClientes()
-        let dados = [
-            for cliente in tabela.Dados do
-                match cliente with
-                | cliente when cliente.Id = id -> ignore()
-                | cliente -> yield cliente
-        ]
-        salvarTabela { tabela with Dados = dados }
+        atualizarTabelasClientes (fun tabela -> excluirClienteComId id [] tabela.Dados)
+
+    let atualizarCliente cliente =
+        let removeEAdiciona tabela =
+                cliente ::  
+                (excluirClienteComId
+                    cliente.Id
+                    []
+                    tabela.Dados)
+        atualizarTabelasClientes (removeEAdiciona)
+
+
 
     

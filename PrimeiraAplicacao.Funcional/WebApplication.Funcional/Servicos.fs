@@ -15,23 +15,37 @@ module ClienteServico =
     let incluirCliente cliente =
         atualizarTabelasClientes (fun tabela -> cliente :: tabela.Dados)
 
-    let rec excluirClienteComId id jaPercorridos (lista: Cliente list) =
-        match lista with
-            | head :: tail when head.Id = id -> jaPercorridos @ tail
-            | head :: tail -> excluirClienteComId id (head :: jaPercorridos) tail
-            | [] -> jaPercorridos
+    let excluirClienteComId id (lista: Cliente list) =
+        lista
+        |> List.filter (fun cliente -> cliente.Id <> id)
 
     let excluirCliente id =
-        atualizarTabelasClientes (fun tabela -> excluirClienteComId id [] tabela.Dados)
+        atualizarTabelasClientes (fun tabela -> excluirClienteComId id tabela.Dados)
 
     let atualizarCliente cliente =
         let removeEAdiciona tabela =
                 cliente ::  
                 (excluirClienteComId
                     cliente.Id
-                    []
                     tabela.Dados)
         atualizarTabelasClientes (removeEAdiciona)
+
+    let filtrarTabelasClientesPor filtro =
+        obterClientes().Dados
+        |> List.filter filtro
+
+    let obterPorCpf cpf =
+        filtrarTabelasClientesPor (fun cliente -> cliente.CPF = cpf)
+
+    let obterPorNome nome =
+        filtrarTabelasClientesPor (fun cliente -> cliente.Nome = nome)
+
+    let obterPorId id =
+        obterClientes().Dados
+        |> List.tryFind (fun cliente -> cliente.Id = id)
+
+    let obterTodos() =
+        obterClientes().Dados
 
 
 

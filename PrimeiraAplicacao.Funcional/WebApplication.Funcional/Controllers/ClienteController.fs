@@ -10,7 +10,19 @@ type ClienteController() =
 
     [<HttpGet>]
     member __.ObterTodos() =
-        Persistencia.obterContexto().Clientes.Dados
+        ClienteServico.obterTodos()
+
+    [<HttpGet>]
+    member __.ObterPorId(id) =
+        ClienteServico.obterPorId id
+
+    [<HttpGet>]
+    member __.ObterPorCpf(cpf) =
+        ClienteServico.obterPorCpf cpf
+
+    [<HttpGet>]
+    member __.ObterPorNome([<FromQuery>]nome) =
+        ClienteServico.obterPorNome nome
 
     [<HttpPost>]
     member __.Incluir(cliente) = 

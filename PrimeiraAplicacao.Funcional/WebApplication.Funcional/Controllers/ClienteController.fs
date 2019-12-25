@@ -1,6 +1,5 @@
 ﻿namespace WebApplication.Funcional.Controllers
 
-open Servicos
 open Microsoft.AspNetCore.Mvc
 
 [<ApiController>]
@@ -21,8 +20,12 @@ type ClienteController() =
         ClienteServico.obterPorCpf cpf
 
     [<HttpGet>]
-    member __.ObterPorNome([<FromQuery>]nome) =
+    member __.ObterPorNome(nome) =
         ClienteServico.obterPorNome nome
+
+    [<HttpGet>]
+    member __.ObterPor([<FromQuery>] filtro) =
+        ClienteServico.obterPor filtro
 
     [<HttpPost>]
     member __.Incluir(cliente) = 
@@ -30,7 +33,7 @@ type ClienteController() =
 
     [<HttpDelete>]
     member __.Excluir(id) =
-        Servicos.ClienteServico.excluirCliente id
+        ClienteServico.excluirCliente id
 
     [<HttpPut>]
     member __.Atualizar(cliente) =

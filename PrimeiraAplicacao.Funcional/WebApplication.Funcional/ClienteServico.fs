@@ -17,12 +17,25 @@ let atualizarTabelasClientes funcaoParaObterNovosDados =
 let incluirCliente cliente =
     atualizarTabelasClientes (fun tabela -> cliente :: tabela.Dados)
 
+let transformarListaEmResposta =
+    List.map (ClienteResposta.transformar)
+
 let excluirClienteComId id (lista: Cliente list) =
     lista
     |> List.filter (fun cliente -> cliente.Id <> id)
 
-let excluirCliente id =
-    atualizarTabelasClientes (fun tabela -> excluirClienteComId id tabela.Dados)
+let obterSemClienteComId id (lista : Cliente list) =
+    lista
+    |> List.filter
+        (fun cliente -> cliente.Id <> id)
+
+let excluirClienteDoBanco id =
+    atualizarTabelasClientes
+        (fun tabela -> obterSemClienteComId id tabela.Dados)
+
+let excluirCliente =
+    excluirClienteDoBanco
+    >> transformarListaEmResposta
 
 let atualizarCliente cliente =
     let removeEAdiciona tabela =
@@ -51,16 +64,21 @@ let obterPorCpf cpf =
 let obterPorNome nome =
     filtrarTabelasClientesPor (fun cliente -> cliente.Nome = nome)
 
-let obterPorId id =
-    let cliente =
-        obterClientes().Dados
-        |> List.tryFind (fun cliente -> cliente.Id = id)
-    match cliente with
-    | Some cliente -> ClienteResposta.transformar cliente |> Some
-    | None -> None
+let obterDoBancoPorId id =
+    obterClientes().Dados
+    |> List.tryFind (fun cliente -> cliente.Id = id)
+
+let obterPorId =
+    obterDoBancoPorId
+    >> Option.map (ClienteResposta.transformar)
+
+
+let obterTodosDoBanco() = 
+    obterClientes().Dados
 
 let obterTodos() =
-    obterClientes().Dados
+    obterTodosDoBanco
+    >> transformarListaEmResposta
 
 
 

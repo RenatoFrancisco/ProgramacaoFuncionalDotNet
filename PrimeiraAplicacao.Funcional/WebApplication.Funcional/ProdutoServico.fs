@@ -4,9 +4,17 @@ open Operadores
 open Dominio
 open Persistencia
 open Transporte.Filtros
+open ProdutoResposta
+
+let transformarListaEmResposta =
+    List.map (ProdutoResposta.transformar)
+
 
 let obterProdutos() =
     obterContexto().Produtos
+
+let obterTodosDoBanco() =
+    obterProdutos().Dados
 
 let atualizarTabelaProdutos funcaoParaObterNovosDados =
     obterProdutos()
@@ -32,11 +40,16 @@ let atualizarProduto produto =
     atualizarTabelaProdutos(removeEAdciona)
 
 let obterTodos() =
-    obterProdutos().Dados
+    obterTodosDoBanco
+    >> transformarListaEmResposta
 
-let obterPorId id =
+let obterDoBancoPorId id =
     obterProdutos().Dados
-    |> List.tryFind(fun produto -> produto.Id = id)
+    |> List.tryFind (fun produto -> produto.Id = id)
+
+let obterPorId =
+    obterDoBancoPorId
+    >> Option.map (ProdutoResposta.transformar)
 
 let obterPor (filtro : ProdutoFiltro) =
     filtrarTabelaProdutosPor
